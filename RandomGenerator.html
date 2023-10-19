@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> Random Number Generator </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>  
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <style>
+      #content{
+        height: auto;
+
+      }
+        #menu{
+          float: left;
+          width: auto;
+          background-color: #212529;
+          text-align: center;
+          font-size: 18pt;
+          padding: 20px 50px 20px 50px;
+          color: #e9ecef;
+          text-decoration: none;
+          margin: 5px 10px 10px 5px;
+          min-height: 500px;
+        }
+        a{
+          color: #e9ecef;
+        }
+        div[ng-app="myApp"] {
+          margin: 5px 0px 5px 20px;
+          padding-top: 5px;
+          text-align:left;
+          min-height: 500px;
+        }
+        h3{
+          text-align: center;  
+        }
+        button{
+          background-color: rgb(195, 195, 199);
+          border-radius: 10px;
+          margin-left: 100px;
+        }
+        
+    </style>
+
+    
+</head>
+<body>
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <h1>Mathematical Calculator</h1>
+  
+</div>
+
+
+
+<div id="content">
+  <div id="menu">
+    <br>
+    <br>
+    <a href="https://vedp.sgedu.site/Git/Mathematical_Cal/index.html" >Index</a>
+    <br>
+    <br>
+    <br>
+    <a href="https://vedp.sgedu.site/Git/Mathematical_Cal/AreaCalculator.html" >Area Calculator</a>
+    <br>
+    <br>
+    <br>
+    <a href="https://vedp.sgedu.site/Git/Mathematical_Cal/MultiplicationTable.html">Multiplication Table</a>
+    <br>
+    <br>
+    <br>
+    <a href="https://vedp.sgedu.site/Git/Mathematical_Cal/RandomGenerator.html">Random Generator</a>
+  
+  </div>
+  <div ng-app="myApp" ng-controller="myCtrl">
+    <h1>Random Number Generator</h1>
+    <h4>Please enter an integer number</h4>
+    <input type="number" ng-model="integer" >
+    <br>
+    <br>
+    Distribution of randomly generated {{integer}} numbers:<br>
+    ["{{generator()}}"]
+
+  </div>
+
+  <script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope) {
+        $scope.integer = 0;
+        $scope.randArray=[];
+        $scope.generator = function(){
+            $scope.randArray=[];
+            $scope.range1=0;
+            $scope.range2=0;
+            $scope.range3=0;
+            $scope.range4=0;
+            $scope.range5=0;
+            
+            
+
+            for (let i = 0; i < $scope.integer; i++) {
+                $scope.randArray.push(generateRandom());
+            }
+            
+            for (let index = 0; index < $scope.randArray.length; index++) {
+                if ($scope.randArray[index]>0 && $scope.randArray[index]<=10){
+                    $scope.range1++;
+                }else if ($scope.randArray[index]>10 && $scope.randArray[index]<=20){
+                    $scope.range2++;
+                }else if ($scope.randArray[index]>20 && $scope.randArray[index]<=30){
+                    $scope.range3++;
+                }else if ($scope.randArray[index]>30 && $scope.randArray[index]<=40){
+                    $scope.range4++;
+                }else if ($scope.randArray[index]>40 && $scope.randArray[index]<=50){
+                    $scope.range5++;
+                }
+            }
+            //return $scope.range1+" numbers are randomly generated in the range between 01-10,\n"+$scope.range2+" numbers are randomly generated in the range between 11-20,\n"+$scope.range3+" numbers are randomly generated in the range between 21-30,\n"+$scope.range4+" numbers are randomly generated in the range between 31-40,"+$scope.range5+" numbers are randomly generated in the range between 41-50";
+            $scope.generatorResult =
+                $scope.range1 + ' numbers are randomly generated in the range between 01 - 10",' +
+                '"' + $scope.range2 + ' numbers are randomly generated in the range between 11- 20",' +
+                '"' + $scope.range3 + ' numbers are randomly generated in the range between 21 - 30",' +
+                '"' + $scope.range4 + ' numbers are randomly generated in the range between 31- 40",' +
+                '"' + $scope.range5 + ' numbers are randomly generated in the range between 41-50';
+                return $scope.generatorResult;
+        }
+        function generateRandom(){
+            return Math.floor(Math.random()*50)+1;
+        }
+    });
+
+    </script>
+
+<div class="jumbotron text-center" style="margin:5px 0px 0px 0px" >
+  <p> <h1> Ved Patel <h1> </p>
+    <p><h4><a href="mailto:veds28112004@gmail.com" style="color: black;">veds28112004@gmail.com</a></h4></p>
+</div>
+
+</body>
+</html>
